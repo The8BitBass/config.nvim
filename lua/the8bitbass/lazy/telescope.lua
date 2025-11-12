@@ -14,9 +14,7 @@ return {
 
                 -- `cond` is a condition used to determine whether this plugin should be
                 -- installed and loaded.
-                cond = function()
-                    return vim.fn.executable("make") == 1
-                end,
+                cond = function() return vim.fn.executable("make") == 1 end,
             },
             { "nvim-telescope/telescope-ui-select.nvim" },
 
@@ -45,6 +43,16 @@ return {
 
             -- [[ Configure Telescope ]]
             -- See `:help telescope` and `:help telescope.setup()`
+
+            -- Clone the default Telescope configuration
+            local vimgrep_arguments = { unpack(require("telescope.config").values.vimgrep_arguments) }
+
+            -- I want to search in hidden/dot files.
+            table.insert(vimgrep_arguments, "--hidden")
+            -- I don't want to search in the `.git` directory.
+            table.insert(vimgrep_arguments, "--glob")
+            table.insert(vimgrep_arguments, "!**/.git/*")
+
             require("telescope").setup({
                 -- You can put your default mappings / updates / etc. in here
                 --  All the info you're looking for is in `:help telescope.setup()`
@@ -54,6 +62,10 @@ return {
                 --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
                 --   },
                 -- },
+                defaults = {
+                    -- `hidden = true` is not supported in text grep commands.
+                    vimgrep_arguments = vimgrep_arguments,
+                },
                 -- pickers = {}
                 winblend = 40,
                 extensions = {
@@ -93,17 +105,25 @@ return {
 
             -- It's also possible to pass additional configuration options.
             --  See `:help telescope.builtin.live_grep()` for information about particular keys
-            vim.keymap.set("n", "<leader>s/", function()
-                builtin.live_grep({
-                    grep_open_files = true,
-                    prompt_title = "Live Grep in Open Files",
-                })
-            end, { desc = "[S]earch [/] in Open Files" })
+            vim.keymap.set(
+                "n",
+                "<leader>s/",
+                function()
+                    builtin.live_grep({
+                        grep_open_files = true,
+                        prompt_title = "Live Grep in Open Files",
+                    })
+                end,
+                { desc = "[S]earch [/] in Open Files" }
+            )
 
             -- Shortcut for searching your Neovim configuration files
-            vim.keymap.set("n", "<leader>sn", function()
-                builtin.find_files({ cwd = vim.fn.stdpath("config") })
-            end, { desc = "[S]earch [N]eovim files" })
+            vim.keymap.set(
+                "n",
+                "<leader>sn",
+                function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end,
+                { desc = "[S]earch [N]eovim files" }
+            )
         end,
     },
 }
