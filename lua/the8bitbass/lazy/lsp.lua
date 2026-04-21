@@ -77,6 +77,18 @@ return {
                     end,
                 },
 
+                powershell_es = {
+                    settings = {
+                        powershell = {
+                            codeFormatting = {
+                                preset = "Custom",
+                                openBraceOnSameLine = true,
+                                newLineAfterOpenBrace = true,
+                                newLineAfterCloseBrace = false,
+                            },
+                        },
+                    },
+                },
                 -- ionide = {
                 --     flags = {
                 --         debounce_text_changes = 150,
