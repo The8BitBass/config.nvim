@@ -59,11 +59,13 @@ autocmd("LspAttach", {
         keymap("n", "<leader>ni", function() vim.lsp.buf.implementation() end, "[N]avigate to [I]mplementation")
         keymap("n", "<leader>nt", function() vim.lsp.buf.type_definition() end, "[N]avigate to [T]ype")
         keymap("n", "<leader>ns", function() vim.lsp.buf.workspace_symbol() end, "[N]avigate to [S]ymbol")
+        keymap("n", "<leader>nh", function() vim.lsp.buf.hover() end, "[N]avigate show [H]over")
 
         keymap("n", "<leader>ds", function() vim.diagnostic.open_float() end, "[D]ebug [S]how")
 
         keymap("n", "<leader>rr", function() vim.lsp.buf.rename() end, "[R]efactor [R]ename")
         keymap("n", "<leader>ra", function() vim.lsp.buf.code_action() end, "[R]efactor [A]ction")
+
         -- keymap("n", "K", function() vim.lsp.buf.hover() end, "Hover")
         -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
         -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
