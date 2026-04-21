@@ -8,7 +8,7 @@ end
 
 return {
     {
-        "8bitbass/knight-life.nvim",
+        "the8bitbass/knight-life.nvim",
         name = "knight-life",
         lazy = false,
         priority = 1000,

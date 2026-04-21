@@ -28,7 +28,7 @@ local getInput = function(prompt, opts)
 end
 
 return {
-    "8bitbass/obsidian.nvim",
+    "the8bitbass/obsidian.nvim",
     dev = true,
     branch = "dragon-glass",
     -- lazy = true,
