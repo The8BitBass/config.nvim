@@ -117,6 +117,7 @@ return {
                 { desc = "[S]earch [/] in Open Files" }
             )
 
+            -- local nvim_files = os.getenv("DEVENV_ROOT") and os.getenv("DEVENV_ROOT") .. "/env/.config/nvim" or vim.fn.stdpath("config")
             -- Shortcut for searching your Neovim configuration files
             vim.keymap.set(
                 "n",
