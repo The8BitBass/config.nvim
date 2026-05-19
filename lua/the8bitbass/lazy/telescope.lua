@@ -117,12 +117,12 @@ return {
                 { desc = "[S]earch [/] in Open Files" }
             )
 
-            -- local nvim_files = os.getenv("DEVENV_ROOT") and os.getenv("DEVENV_ROOT") .. "/env/.config/nvim" or vim.fn.stdpath("config")
+            local nvim_files = os.getenv("DEVENV_ROOT") and os.getenv("DEVENV_ROOT") .. "/env/.config/nvim" or vim.fn.stdpath("config")
             -- Shortcut for searching your Neovim configuration files
             vim.keymap.set(
                 "n",
                 "<leader>sn",
-                function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end,
+                function() builtin.find_files({ cwd = nvim_files }) end,
                 { desc = "[S]earch [N]eovim files" }
             )
         end,
