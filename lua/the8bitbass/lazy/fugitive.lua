@@ -2,6 +2,8 @@ return {
     "tpope/vim-fugitive",
     config = function()
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git Status" })
+        vim.keymap.set("n", "<leader>gf", vim.cmd.Git("fetch --all"), { desc = "Git Fetch" })
+        vim.keymap.set("n", "<leader>gl", vim.cmd.Git("pull"), { desc = "Git Pull" })
 
         local The8BitBass_Fugitive = vim.api.nvim_create_augroup("The8BitBass_Fugitive", {})
 
@@ -15,24 +17,31 @@ return {
                 end
 
                 local bufnr = vim.api.nvim_get_current_buf()
-                local opts = { buffer = bufnr, remap = false }
 
-                vim.keymap.set("n", "<leader>F", function()
-                    vim.cmd.Git("fetch --all")
-                end, { buffer = bufnr, remap = false, desc = "fetch" })
+                local function map(lhs, rhs, desc)
+                    vim.keymap.set("n", lhs, rhs, { buffer = bufnr, remap = false, desc = desc, })
+                end
 
-                vim.keymap.set("n", "<leader>p", function()
-                    vim.cmd.Git("push")
-                end, { buffer = bufnr, remap = false, desc = "push" })
+                local function git(args)
+                    vim.cmd.Git(args)
+                end
+
+                map("<leader>F", git("fetch --all"), "fetch")
+
+                map("<leader>H", git("push"), "push")
 
                 -- rebase always
-                vim.keymap.set("n", "<leader>P", function()
-                    vim.cmd.Git("pull --rebase")
-                end, { buffer = bufnr, remap = false, desc = "pull" })
+                map("<leader>L", git("pull --rebase"), "pull")
 
                 -- NOTE: It allows me to easily set the branch i am pushing and any tracking
                 -- needed if i did not set the branch up correctly
-                vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts)
+                map("<leader>T", ":Git push -u origin ", "push set upstream")
+
+                require("which-key").add({ "<leader>S", group = "Git [S]ubmodule", buffer = bufnr })
+                map("<leader>SI", git("submodule update --init --recursive"), "submodule init")
+                map("<leader>SL", git("submodule update --remote --rebase --recursive"), "submodule get latest")
+                map("<leader>SH", git("push --recurse-submodules=on-demand"), "submodule push on-demand")
+
             end,
         })
 
