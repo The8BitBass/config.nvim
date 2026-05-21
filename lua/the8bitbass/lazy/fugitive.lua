@@ -37,9 +37,7 @@ return {
                 -- needed if i did not set the branch up correctly
                 map("<leader>T", ":Git push -u origin ", "push set upstream")
 
-
                 require("which-key").add({ "<leader>S", group = "Git [S]ubmodule", buffer = bufnr })
-
                 map("<leader>SI", function() git("submodule update --init --recursive") end, "submodule init")
                 map("<leader>SL", function() git("submodule update --remote --rebase --recursive") end, "submodule get latest")
                 map("<leader>SH", function() git("push --recurse-submodules=on-demand") end, "submodule push on-demand")
