@@ -26,21 +26,21 @@ return {
                     vim.cmd.Git(args)
                 end
 
-                map("<leader>F", git("fetch --all"), "fetch")
+                map("<leader>F", function() git("fetch --all") end, "fetch")
 
-                map("<leader>H", git("push"), "push")
+                map("<leader>H", function() git("push") end, "push")
 
                 -- rebase always
-                map("<leader>L", git("pull --rebase"), "pull")
+                map("<leader>L", function() git("pull --rebase") end, "pull")
 
                 -- NOTE: It allows me to easily set the branch i am pushing and any tracking
                 -- needed if i did not set the branch up correctly
                 map("<leader>T", ":Git push -u origin ", "push set upstream")
 
                 require("which-key").add({ "<leader>S", group = "Git [S]ubmodule", buffer = bufnr })
-                map("<leader>SI", git("submodule update --init --recursive"), "submodule init")
-                map("<leader>SL", git("submodule update --remote --rebase --recursive"), "submodule get latest")
-                map("<leader>SH", git("push --recurse-submodules=on-demand"), "submodule push on-demand")
+                map("<leader>SI", function() git("submodule update --init --recursive") end, "submodule init")
+                map("<leader>SL", function() git("submodule update --remote --rebase --recursive") end, "submodule get latest")
+                map("<leader>SH", function() git("push --recurse-submodules=on-demand") end, "submodule push on-demand")
 
             end,
         })
