@@ -2,8 +2,8 @@ return {
     "tpope/vim-fugitive",
     config = function()
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git Status" })
-        vim.keymap.set("n", "<leader>gf", vim.cmd.Git("fetch --all"), { desc = "Git Fetch" })
-        vim.keymap.set("n", "<leader>gl", vim.cmd.Git("pull"), { desc = "Git Pull" })
+        vim.keymap.set("n", "<leader>gf", function() vim.cmd.Git("fetch --all") end, { desc = "Git Fetch" })
+        vim.keymap.set("n", "<leader>gl", function() vim.cmd.Git("pull") end, { desc = "Git Pull" })
 
         local The8BitBass_Fugitive = vim.api.nvim_create_augroup("The8BitBass_Fugitive", {})
 
