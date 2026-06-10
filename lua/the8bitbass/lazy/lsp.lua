@@ -24,6 +24,7 @@ return {
 
             -- Useful status updates for LSP.
             { "j-hui/fidget.nvim", opts = {} },
+            { "DrKJeff16/wezterm-types", version = false },
 
             -- Other tools for langauges
             -- F#
@@ -56,6 +57,7 @@ return {
             --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
             -- require("ionide").setup()
 
+            local weztermTypesPath = require("lazy.core.config").plugins["wezterm-types"].dir
             local servers = {
                 -- clangd = {},
                 -- gopls = {},
@@ -105,6 +107,7 @@ return {
                                 library = {
                                     vim.env.VIMRUNTIME,
                                     "${3rd}/luv/library",
+                                    weztermTypesPath,
                                 },
                             },
                             completion = {
