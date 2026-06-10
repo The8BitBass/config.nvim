@@ -10,9 +10,19 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+local devenv_root = os.getenv("DEVENV_ROOT")
+
+local lazy_lockfile
+if devenv_root ~= nil and devenv_root ~= "" then
+    lazy_lockfile = devenv_root .. "/env/.config/nvim/lazy-lock.json"
+else
+    lazy_lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
+end
+
 require("lazy").setup({
     spec = "the8bitbass.lazy",
     change_detection = { notify = false },
+    lockfile = lazy_lockfile,
     dev = {
         path = os.getenv("HOME") .. "/personal/",
         fallback = true,
