@@ -30,7 +30,7 @@ end
 return {
     "the8bitbass/obsidian.nvim",
     dev = true,
-    branch = "dragon-glass",
+    branch = "main",
     -- lazy = true,
     -- ft = "markdown",
     dependencies = {
@@ -145,7 +145,7 @@ return {
                 vim.keymap.set( "n", "<leader>op", function() vim.cmd("Obsidian new_from_template person") end, { desc = "New Person" })
                 vim.keymap.set( "n", "<leader>oi", function() vim.cmd("Obsidian new_from_template idea") end, { desc = "New Idea" })
                 vim.keymap.set( "n", "<leader>or", function() vim.cmd("Obsidian new_from_template recipe") end, { desc = "New Recipe" })
-                vim.keymap.set( "n", "<leader>occ", function() vim.cmd("Obsidian new_from_template Communications/conversation") end, { desc = "New Recipe" })
+                vim.keymap.set( "n", "<leader>occ", function() vim.cmd("Obsidian new_from_template Communications/conversation") end, { desc = "New Conversation" })
             end,
             enter_note = function(client, note)
                 local bufnr = note.bufnr
