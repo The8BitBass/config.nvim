@@ -68,6 +68,8 @@ return {
                 { "<leader>t", group = "[T]oggle" },
                 { "<leader>g", group = "[G]it" },
                 { "<leader>o", group = "[O]bsidian" },
+                { "<leader>oc", group = "[C]ommunications" },
+                { "<leader>om", group = "[M]edia" },
                 -- { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
             },
         },
