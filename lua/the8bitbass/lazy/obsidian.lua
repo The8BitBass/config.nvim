@@ -129,23 +129,38 @@ return {
                 idea = {
                     notes_subdir = "Ideas"
                 },
-                person = {
+                contact = {
                     notes_subdir = "People",
                 },
                 recipe = {
                     notes_subdir = "Recipes",
+                },
+                topic = {
+                    notes_subdir = "Topics",
                 },
             },
         },
         -- Optional, define your own callbacks to further customize behavior.
         callbacks = {
             post_setup = function(client)
-                vim.keymap.set( "n", "<leader>on", function() vim.cmd("Obsidian new") end, { desc = "New Note" })
-                vim.keymap.set( "n", "<leader>ot", function() vim.cmd("Obsidian new_from_template") end, { desc = "New note from template" })
-                vim.keymap.set( "n", "<leader>op", function() vim.cmd("Obsidian new_from_template person") end, { desc = "New Person" })
-                vim.keymap.set( "n", "<leader>oi", function() vim.cmd("Obsidian new_from_template idea") end, { desc = "New Idea" })
-                vim.keymap.set( "n", "<leader>or", function() vim.cmd("Obsidian new_from_template recipe") end, { desc = "New Recipe" })
-                vim.keymap.set( "n", "<leader>occ", function() vim.cmd("Obsidian new_from_template Communications/conversation") end, { desc = "New Conversation" })
+                vim.keymap.set( "n", "<leader>on", function() vim.cmd("Obsidian new") end, { desc = "New [N]ote" })
+                vim.keymap.set( "n", "<leader>of", function() vim.cmd("Obsidian new_from_template") end, { desc = "New note [F]rom template" })
+                vim.keymap.set( "n", "<leader>op", function() vim.cmd("Obsidian new_from_template contact") end, { desc = "New [P]erson" })
+                vim.keymap.set( "n", "<leader>oi", function() vim.cmd("Obsidian new_from_template idea") end, { desc = "New [I]dea" })
+                vim.keymap.set( "n", "<leader>or", function() vim.cmd("Obsidian new_from_template recipe") end, { desc = "New [R]ecipe" })
+                vim.keymap.set( "n", "<leader>ot", function() vim.cmd("Obsidian new_from_template topic") end, { desc = "New [T]opic" })
+                vim.keymap.set( "n", "<leader>occ", function() vim.cmd("Obsidian new_from_template conversation") end, { desc = "New [C]onversation" })
+                vim.keymap.set( "n", "<leader>oce", function() vim.cmd("Obsidian new_from_template email") end, { desc = "New [E]mail" })
+                vim.keymap.set( "n", "<leader>oci", function() vim.cmd("Obsidian new_from_template interview") end, { desc = "New [I]nterview" })
+                vim.keymap.set( "n", "<leader>ocm", function() vim.cmd("Obsidian new_from_template meeting") end, { desc = "New [M]eeting" })
+                vim.keymap.set( "n", "<leader>ocp", function() vim.cmd("Obsidian new_from_template phonecall") end, { desc = "New [P]honeCall" })
+                vim.keymap.set( "n", "<leader>oma", function() vim.cmd("Obsidian new_from_template article") end, { desc = "New [A]rticle" })
+                vim.keymap.set( "n", "<leader>omt", function() vim.cmd("Obsidian new_from_template boardgame") end, { desc = "New [T]abletop/board game" })
+                vim.keymap.set( "n", "<leader>omb", function() vim.cmd("Obsidian new_from_template book") end, { desc = "New [B]ook" })
+                vim.keymap.set( "n", "<leader>omm", function() vim.cmd("Obsidian new_from_template movie") end, { desc = "New [M]ovie" })
+                vim.keymap.set( "n", "<leader>oms", function() vim.cmd("Obsidian new_from_template show") end, { desc = "New [S]how" })
+                vim.keymap.set( "n", "<leader>omv", function() vim.cmd("Obsidian new_from_template video") end, { desc = "New [V]ideo" })
+                vim.keymap.set( "n", "<leader>omg", function() vim.cmd("Obsidian new_from_template videogame") end, { desc = "New Video [G]ame" })
             end,
             enter_note = function(client, note)
                 local bufnr = note.bufnr
