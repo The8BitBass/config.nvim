@@ -50,20 +50,6 @@ return {
         },
         legacy_commands = false,
         notes_subdir = "Inbox",
-        note_id_func = function(title, path)
-            local function camelize(input)
-                return input
-                    :gsub("(%s)(%a)", function(_, letter) return letter:upper() end) -- uppercase letters after spaces
-                    :gsub("^%a", string.upper) -- uppercase the first character if it's a letter
-                    :gsub("%s+", "") -- remove all spaces
-            end
-
-            if title and title ~= "" then
-                return camelize(title)
-            end
-
-            return require("obsidian.builtin").zettel_id(title, path)
-        end,
         footer = {
             enabled = false,
         },
@@ -138,6 +124,17 @@ return {
         },
         -- Optional, define your own callbacks to further customize behavior.
         callbacks = {
+            create_note = function(note, opts)
+                if opts.scope == "plain" and note.title and note.title ~= note.id then
+                    note:add_alias(note.title)
+
+                    local filename = note.title
+                        :gsub("(%s)(%a)", function(_, letter) return letter:upper() end)
+                        :gsub("^%a", string.upper)
+                        :gsub("%s+", "")
+                    note.path = (assert(note.path:parent()) / filename):with_suffix(".md", true)
+                end
+            end,
             post_setup = function()
                 vim.keymap.set( "n", "<leader>on", function() vim.cmd("Obsidian new") end, { desc = "New [N]ote" })
                 vim.keymap.set( "n", "<leader>of", function() vim.cmd("Obsidian new_from_template") end, { desc = "New note [F]rom template" })
