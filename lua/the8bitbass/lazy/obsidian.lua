@@ -51,7 +51,7 @@ return {
         legacy_commands = false,
         notes_subdir = "Inbox",
         footer = {
-            enabled = false,
+            enabled = true,
         },
         frontmatter = {
             enabled = function(filename)
@@ -136,8 +136,8 @@ return {
                 end
             end,
             post_setup = function()
-                vim.keymap.set( "n", "<leader>on", function() vim.cmd("Obsidian new") end, { desc = "New [N]ote" })
-                vim.keymap.set( "n", "<leader>of", function() vim.cmd("Obsidian new_from_template") end, { desc = "New note [F]rom template" })
+                vim.keymap.set("n", "<leader>on", function() vim.cmd("Obsidian new") end, { desc = "New [N]ote" })
+                vim.keymap.set("n", "<leader>of", function() vim.cmd("Obsidian new_from_template") end, { desc = "New note [F]rom template" })
                 vim.keymap.set("n", "<leader>op", function() newFromTemplate("contact") end, { desc = "New [P]erson" })
                 vim.keymap.set("n", "<leader>oi", function() newFromTemplate("idea") end, { desc = "New [I]dea" })
                 vim.keymap.set("n", "<leader>or", function() newFromTemplate("recipe") end, { desc = "New [R]ecipe" })
