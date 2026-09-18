@@ -28,7 +28,7 @@ local getInput = function(prompt, opts)
 end
 
 local newFromTemplate = function(template)
-    local title = getInput("Enter " .. template .. " title or path (optional):", { completion = "file" })
+    local title = getInput("Enter " .. vim.fs.basename(template) .. " title or path (optional):", { completion = "file" })
     if title == nil then
         return
     end
@@ -145,18 +145,18 @@ return {
                 vim.keymap.set("n", "<leader>oi", function() newFromTemplate("idea") end, { desc = "New [I]dea" })
                 vim.keymap.set("n", "<leader>or", function() newFromTemplate("recipe") end, { desc = "New [R]ecipe" })
                 vim.keymap.set("n", "<leader>ot", function() newFromTemplate("topic") end, { desc = "New [T]opic" })
-                vim.keymap.set("n", "<leader>occ", function() newFromTemplate("conversation") end, { desc = "New [C]onversation" })
-                vim.keymap.set("n", "<leader>oce", function() newFromTemplate("email") end, { desc = "New [E]mail" })
-                vim.keymap.set("n", "<leader>oci", function() newFromTemplate("interview") end, { desc = "New [I]nterview" })
-                vim.keymap.set("n", "<leader>ocm", function() newFromTemplate("meeting") end, { desc = "New [M]eeting" })
-                vim.keymap.set("n", "<leader>ocp", function() newFromTemplate("phonecall") end, { desc = "New [P]honeCall" })
-                vim.keymap.set("n", "<leader>oma", function() newFromTemplate("article") end, { desc = "New [A]rticle" })
-                vim.keymap.set("n", "<leader>omt", function() newFromTemplate("boardgame") end, { desc = "New [T]abletop/board game" })
-                vim.keymap.set("n", "<leader>omb", function() newFromTemplate("book") end, { desc = "New [B]ook" })
-                vim.keymap.set("n", "<leader>omm", function() newFromTemplate("movie") end, { desc = "New [M]ovie" })
-                vim.keymap.set("n", "<leader>oms", function() newFromTemplate("show") end, { desc = "New [S]how" })
-                vim.keymap.set("n", "<leader>omv", function() newFromTemplate("video") end, { desc = "New [V]ideo" })
-                vim.keymap.set("n", "<leader>omg", function() newFromTemplate("videogame") end, { desc = "New Video [G]ame" })
+                vim.keymap.set("n", "<leader>occ", function() newFromTemplate("Communications/conversation") end, { desc = "New [C]onversation" })
+                vim.keymap.set("n", "<leader>oce", function() newFromTemplate("Communications/email") end, { desc = "New [E]mail" })
+                vim.keymap.set("n", "<leader>oci", function() newFromTemplate("Communications/interview") end, { desc = "New [I]nterview" })
+                vim.keymap.set("n", "<leader>ocm", function() newFromTemplate("Communications/meeting") end, { desc = "New [M]eeting" })
+                vim.keymap.set("n", "<leader>ocp", function() newFromTemplate("Communications/phonecall") end, { desc = "New [P]honeCall" })
+                vim.keymap.set("n", "<leader>oma", function() newFromTemplate("Media/article") end, { desc = "New [A]rticle" })
+                vim.keymap.set("n", "<leader>omt", function() newFromTemplate("Media/boardgame") end, { desc = "New [T]abletop/board game" })
+                vim.keymap.set("n", "<leader>omb", function() newFromTemplate("Media/book") end, { desc = "New [B]ook" })
+                vim.keymap.set("n", "<leader>omm", function() newFromTemplate("Media/movie") end, { desc = "New [M]ovie" })
+                vim.keymap.set("n", "<leader>oms", function() newFromTemplate("Media/show") end, { desc = "New [S]how" })
+                vim.keymap.set("n", "<leader>omv", function() newFromTemplate("Media/video") end, { desc = "New [V]ideo" })
+                vim.keymap.set("n", "<leader>omg", function() newFromTemplate("Media/videogame") end, { desc = "New Video [G]ame" })
             end,
             enter_note = function(note)
                 local bufnr = note.bufnr
