@@ -131,6 +131,7 @@ return {
                     local filename = note.title
                         :gsub("(%s)(%a)", function(_, letter) return letter:upper() end)
                         :gsub("^%a", string.upper)
+                        :gsub("'", "")
                         :gsub("%s+", "")
                     note.path = (assert(note.path:parent()) / filename):with_suffix(".md", true)
                 end
